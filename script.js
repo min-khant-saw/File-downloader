@@ -11,7 +11,8 @@ downloadBtn.addEventListener("click", (e) => {
   if (inputDownloadFile.value.length < 10) {
     return;
   }
-  downloadBtn.textContent = "Downloading File...";
+  downloadBtn.disable = true;
+  downloadBtn.innerHTML = `  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Downloading File...`;
   fetchFile(inputDownloadFile.value);
 });
 
@@ -26,6 +27,7 @@ function fetchFile(url) {
       aTag.click();
       aTag.remove();
       URL.revokeObjectURL(fileUrl);
-      downloadBtn.textContent = "Download File";
+      downloadBtn.innerHTML = "Download File";
+      downloadBtn.disable = false;
     });
 }
